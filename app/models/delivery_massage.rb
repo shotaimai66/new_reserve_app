@@ -1,0 +1,2 @@
+class DeliveryMassage < ApplicationRecord
+end
