@@ -4,7 +4,7 @@ class CreateDeliveryMassages < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :message, null: false
       t.datetime :delivery_date, null: false, comment:"配信日時"
-      t.boolean :is_draft, default: false, "下書きかどうかのフラグ"
+      t.boolean :is_draft, default: false, comment: "下書きかどうかのフラグ"
 
       t.references :calendar, foreign_key: true
 

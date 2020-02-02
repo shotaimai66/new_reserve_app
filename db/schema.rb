@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_084530) do
+ActiveRecord::Schema.define(version: 2020_02_02_110834) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,6 +65,17 @@ ActiveRecord::Schema.define(version: 2020_01_26_084530) do
     t.text "message", comment: "予約完了画面に表示する任意のメッセージ"
     t.index ["public_uid"], name: "index_calendars_on_public_uid", unique: true
     t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "delivery_massages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "message", null: false
+    t.datetime "delivery_date", null: false, comment: "配信日時"
+    t.boolean "is_draft", default: false, comment: "下書きかどうかのフラグ"
+    t.bigint "calendar_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_delivery_massages_on_calendar_id"
   end
 
   create_table "iregular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -317,6 +328,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_084530) do
   end
 
   add_foreign_key "calendar_configs", "calendars"
+  add_foreign_key "delivery_massages", "calendars"
   add_foreign_key "iregular_holidays", "calendar_configs"
   add_foreign_key "line_bots", "admins"
   add_foreign_key "log_pictures", "member_logs"
