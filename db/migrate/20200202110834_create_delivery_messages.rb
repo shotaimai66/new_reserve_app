@@ -1,6 +1,6 @@
-class CreateDeliveryMassages < ActiveRecord::Migration[5.2]
+class CreateDeliveryMessages < ActiveRecord::Migration[5.2]
   def change
-    create_table :delivery_massages do |t|
+    create_table :delivery_messages do |t|
       t.string :title
       t.text :message, null: false
       t.datetime :delivery_date, null: false, comment:"配信日時"

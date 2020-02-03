@@ -1,4 +1,4 @@
-class DeliveryMassage < ApplicationRecord
+class DeliveryMessage < ApplicationRecord
 
   belongs_to :calendar
 

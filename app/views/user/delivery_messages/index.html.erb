@@ -1,0 +1,27 @@
+<h3>配信一覧</h3>
+<p>LINE連携をしている顧客に一斉配信します。</p>
+
+<%= link_to "新規配信", new_calendar_delivery_message_path(@calendar), class:"btn btn-primary mb-2" %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">編集</th>
+      <th scope="col">配信先</th>
+      <th scope="col">内容</th>
+      <th scope="col">日時</th>
+      <th scope="col">配信数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @delivery_massages.each do |message| %>
+      <tr>
+        <th scope="row">
+          <%= link_to "編集", edit_calendar_delivery_message_path(@calendar, message), class:"btn btn-success btn-sm" %>
+        </th>
+        <td><%=  %></td>
+        <td><%= message.message %></td>
+        <td><%= l(message.delivery_date.to_time, fomat: :long) %></td>
+        <td><%= 33 %></td>
+      </tr>
+    <% end %>
+</table>

@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_110834) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
-  create_table "delivery_massages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "delivery_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "message", null: false
     t.datetime "delivery_date", null: false, comment: "配信日時"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_110834) do
     t.bigint "calendar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["calendar_id"], name: "index_delivery_massages_on_calendar_id"
+    t.index ["calendar_id"], name: "index_delivery_messages_on_calendar_id"
   end
 
   create_table "iregular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_110834) do
   end
 
   add_foreign_key "calendar_configs", "calendars"
-  add_foreign_key "delivery_massages", "calendars"
+  add_foreign_key "delivery_messages", "calendars"
   add_foreign_key "iregular_holidays", "calendar_configs"
   add_foreign_key "line_bots", "admins"
   add_foreign_key "log_pictures", "member_logs"

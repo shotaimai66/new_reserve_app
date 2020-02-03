@@ -88,7 +88,7 @@ Rails.application.routes.draw do
       resources :staffs, only: [] do
         resources :staff_shifts
       end
-      resources :delivery_massages
+      resources :delivery_messages
     end
     resources :member_logs do
       resources :log_pictures, only: [:create, :destroy]

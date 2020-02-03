@@ -10,7 +10,7 @@ class Calendar < ApplicationRecord
   has_one :calendar_config
   has_many :tasks
   has_many :staffs
-  has_many :delivery_massages
+  has_many :delivery_messages
 
   validates :display_interval_time, presence: true, numericality: { only_integer: true }
   validates :display_week_term, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10 }
