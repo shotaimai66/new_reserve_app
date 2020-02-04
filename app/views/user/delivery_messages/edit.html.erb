@@ -1,23 +1,26 @@
-<h3>一斉配信（新規）</h3>
+<h3>一斉配信（編集）</h3>
 
-<%= form_with url: calendar_delivery_messages_path(@calendar), local: true do %>
+<%= form_with url: calendar_delivery_message_path(@calendar, @delivery_message), method: :patch, local: true do %>
   <h3 class="title">1.配信先を設定</h3>
-  <%= radio_button_tag :delivery_scope, :all, false, required: true %>
+  <%= radio_button_tag :delivery_scope, :all,
+        (true if true),
+        required: true
+         %>
   <%= label_tag "顧客全員に配信" %>
 
 
   <h3 class="title">2.配信日時設定</h3>
   <%= radio_button_tag :delivery_type, :now, false, required: true %>
   <%= label_tag "登録後すぐに配信" %><br>
-  <%= radio_button_tag :delivery_type, :select, false, required: true %>
+  <%= radio_button_tag :delivery_type, :select, true, required: true %>
   <%= label_tag "配信日時を設定" %>
   <div id="delivery_time_area">
     <%= label_tag "配信日時" %>
-    <%= datetime_field_tag :delivery_date %>
+    <%= datetime_field_tag :delivery_date, @delivery_message.delivery_date.strftime("%Y-%m-%dT%H:%M") %>
   </div>
 
   <h3 class="title">3.配信メッセージ設定</h3>
-  <%= text_area_tag :message, "", class:"form-control", required: true %>
+  <%= text_area_tag :message, @delivery_message.message, class:"form-control", required: true %>
   
   <div class="mt-3">
     <%= submit_tag "配信登録", class:"btn btn-primary btn-lg mr-2" %>
@@ -44,16 +47,3 @@ $(function(){
     });
 });
 </script>
-
-<style>
-  .title {
-  padding: 0.25em 0.5em;/*上下 左右の余白*/
-  color: #494949;/*文字色*/
-  background: transparent;/*背景透明に*/
-  border-left: solid 5px #7db4e6;/*左線*/
-}
-
-#delivery_time_area {
-  display: none;
-}
-</style>

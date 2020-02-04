@@ -13,14 +13,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @delivery_massages.each do |message| %>
-      <tr>
+    <% @delivery_massages.order(delivery_date: "desc").each do |message| %>
+      <tr class="<%= "table-secondary" if message.delivery_date < Time.current %>">
         <th scope="row">
           <%= link_to "編集", edit_calendar_delivery_message_path(@calendar, message), class:"btn btn-success btn-sm" %>
         </th>
-        <td><%=  %></td>
+        <td>全体配信</td>
         <td><%= message.message %></td>
-        <td><%= l(message.delivery_date.to_time, fomat: :long) %></td>
+        <td>
+          <%= l(message.delivery_date.to_time, format: :delivery) %>
+          <%= '<span class="badge badge-secondary">配信済み</span>'.html_safe if message.delivery_date < Time.current %>
+        </td>
         <td><%= 33 %></td>
       </tr>
     <% end %>

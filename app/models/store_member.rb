@@ -5,4 +5,7 @@ class StoreMember < ApplicationRecord
   has_many :member_logs, dependent: :destroy
   # validates_associated :tasks
   accepts_nested_attributes_for :tasks, allow_destroy: true
+
+  scope :only_line_sync, -> { where.not(line_user_id: nil) }
+
 end

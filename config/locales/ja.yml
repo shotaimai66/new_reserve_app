@@ -214,6 +214,7 @@ ja:
     am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      delivery: "%Y年%m月%d日(%a) %H時%M分"
       long: "%Y/%m/%d %H:%M"
       middle: "%m月%d日（%a）%H : %M"
       short: "%m/%d %H:%M"
@@ -233,16 +234,4 @@ ja:
       cell_date: "%m/%d"
       cell_day: "(%a)"
       to_json: "%Y-%m-%d"
-  datetime:
-    am: 午前
-    formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
-      long: "%Y/%m/%d %H:%M"
-      middle: "%m月%d日（%a）%H : %M"
-      short: "%m/%d %H:%M"
-      very_short: "%H:%M"
-      to_date: "%Y年%m月"
-      to_work_json: "%Y-%m-%dT%H:%M:%S"
-      to_google_time: "%Y%m%dT%H%M00"
-      to_gmo_pay_time: "%Y%m%d%H%M%S"
     
