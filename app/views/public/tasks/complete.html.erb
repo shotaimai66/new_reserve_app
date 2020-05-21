@@ -20,6 +20,10 @@
           <td><%= @task.store_member.email %></td>
         </tr>
         <tr>
+          <th scope="row">ご住所</th>
+          <td><%= @task.store_member.address %></td>
+        </tr>
+        <tr>
           <th scope="row">予約時間</th>
           <td><%= reservation_date(@task) %></td>
         </tr>

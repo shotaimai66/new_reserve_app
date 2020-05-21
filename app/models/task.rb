@@ -26,6 +26,10 @@ class Task < ApplicationRecord
   scope :only_disappoint, -> { where(is_appoint: false) } # 指名予約
   scope :only_from_public, -> { where(is_from_public: true) } # お客様からの予約
   scope :only_from_store, -> { where(is_from_public: false) } # 店舗側での予約
+  # ↓↓↓ポータルサイト表示用
+  from = DateTime.current.beginning_of_day
+  to = from.since(4.weeks)
+  scope :api_tasks, -> { where(start_time: from..to) }
 
   # 予約が被っている時刻に同時に保存されないように検証
   after_create do

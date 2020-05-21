@@ -21,6 +21,10 @@ class User::UsersController < User::Base
     end
   end
 
+  def api_info
+    @user = current_user
+  end
+
   private
 
   def user_params

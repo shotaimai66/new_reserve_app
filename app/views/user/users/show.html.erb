@@ -75,3 +75,6 @@
         </tbody>
     </table>
 <% end %>
+<h2 class="mt-5">スマートポータルサイト連携用APIキー</h2>
+<%= link_to "表示する", user_api_info_path(@user), remote: true, class:"btn btn-success ml-2 my-2" %>
+<div id="api-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

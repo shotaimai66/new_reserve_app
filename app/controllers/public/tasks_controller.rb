@@ -190,7 +190,7 @@ class Public::TasksController < Public::Base
   end
 
   def store_member_params
-    params.require(:store_member).permit(:name, :email, :phone, :gender, :age, :is_allow_notice, tasks_attributes: %i[start_time end_time request])
+    params.require(:store_member).permit(:name, :email, :phone, :address, :gender, :age, :is_allow_notice, tasks_attributes: %i[start_time end_time request])
   end
 
   def task_params
