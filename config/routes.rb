@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # api
   namespace 'api' do
     namespace 'v1' do
-      resources :tasks, only: [:index]
+      resources :tasks, only: [:index, :show]
     end
   end
 # ================================================================================================================-
@@ -63,7 +63,8 @@ Rails.application.routes.draw do
   # user権限
   scope module: :user do
     resources :users do
-      get "/api_info", to: "users#api_info" #スマートポータル連携用APIキー表示
+      get "/api_key", to: "users#api_key" #スマートポータル連携用【現在のAPIキーを表示】
+      get "/new_api_key", to: "users#new_api_key" #スマートポータル連携用【更新されたAPIキーを表示】
       patch "calendar/:id/update", to: "calendars#update"
       patch "calendar/:id/update_is_released", to: "calendars#update_is_released", as: "calendar_update_is_released"
       get "calendar/:id/calendar_preview", to: "calendars#calendar_preview", as: "calendar_preview"

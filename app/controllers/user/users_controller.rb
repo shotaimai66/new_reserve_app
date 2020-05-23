@@ -1,5 +1,6 @@
 class User::UsersController < User::Base
   before_action :check_has_calendar
+  before_action :update_token, only: [:new_api_key]
 
   def show
     @user = current_user
@@ -21,8 +22,13 @@ class User::UsersController < User::Base
     end
   end
 
-  def api_info
+  # 現在のAPIキーを表示
+  def api_key
     @user = current_user
+  end
+
+  # 新しいAPIキーを表示
+  def new_api_key
   end
 
   private
@@ -33,5 +39,11 @@ class User::UsersController < User::Base
 
   def check_has_calendar
     redirect_to google_auth_ident_form_url if current_user.calendars.first.nil?
+  end
+
+  def update_token
+    @user = current_user
+    @user.token = User.generate_unique_secure_token
+    @user.save!
   end
 end
