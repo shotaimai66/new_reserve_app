@@ -2,6 +2,7 @@
 class Api::Base < ActionController::API 
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include ApiResponse
+  before_action :authenticate
 
   private
 

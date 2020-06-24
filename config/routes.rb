@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      resources :task_courses, only: [:index, :create, :update, :destroy]
-    end
-  end
   root :to => 'tops#top'
 # ================================================================================================================-
   # api
@@ -11,6 +6,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :tasks, only: [:index, :show]
       resources :users, only: [:create, :update]
+      resources :task_courses, only: [:index, :create, :update, :destroy]
     end
   end
 # ================================================================================================================-

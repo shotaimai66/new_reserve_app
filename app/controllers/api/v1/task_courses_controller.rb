@@ -1,9 +1,9 @@
-class Api::V1::TaskCoursesController < ApplicationController
-  before_action :set_task_couse, only: [:update, :destroy]
-  protect_from_forgery except: [:create, :update, :destroy]
+class Api::V1::TaskCoursesController < Api::Base
+  before_action :set_task_course, only: [:update, :destroy]
+  # protect_from_forgery except: [:create, :update, :destroy]
 
   def create
-    task_course = TaskCourse.new(task_couse_params)
+    task_course = TaskCourse.new(task_course_params)
     if task_course.save
       render json: { status: '200', message: 'Created the task_course', data: task_course }
     else
@@ -12,7 +12,7 @@ class Api::V1::TaskCoursesController < ApplicationController
   end
 
   def update
-    if @task_course.update(task_couse_params)
+    if @task_course.update(task_course_params)
       render json: { status: '200', message:"Updated the task_course", data: @task_course }
     else
       response_bad_request
@@ -27,10 +27,10 @@ end
 
   private
 
-  def task_couse_params
+  def task_course_params
     params.require(:task_course).permit(:title, :description, :course_time, :calendar_id, :charge )
   end
 
-  def set_task_couse
+  def set_task_course
     @task_course = TaskCourse.find(params[:id])
   end

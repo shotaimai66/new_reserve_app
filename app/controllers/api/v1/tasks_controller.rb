@@ -1,5 +1,4 @@
 class Api::V1::TasksController < Api::Base
-  before_action :authenticate
   
   def index
     if params[:staff_id].nil?
