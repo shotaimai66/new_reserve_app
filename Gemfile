@@ -103,8 +103,8 @@ gem 'serviceworker-rails'
 gem 'carrierwave'
 
 # ローカルではfog-awsを使用
-# gem 'fog-aws'
-gem 'fog'
+gem 'fog-aws'
+# gem 'fog'
 
 # text_areaのフォームを自動調整
 gem 'autosize', '~> 2.4'
