@@ -45,7 +45,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 # to load environment variables from `.env`.
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 
 # link google calendar
 gem 'google-api-client', require: 'google/apis/calendar_v3'
