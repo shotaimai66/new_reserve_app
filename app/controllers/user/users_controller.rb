@@ -34,13 +34,14 @@ class User::UsersController < User::Base
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def check_has_calendar
     redirect_to google_auth_ident_form_url if current_user.calendars.first.nil?
   end
 
+  # User.tokenを更新
   def update_token
     @user = current_user
     @user.token = User.generate_unique_secure_token

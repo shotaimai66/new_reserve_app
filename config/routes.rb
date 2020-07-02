@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :tasks, only: [:index, :show]
-      resources :users, only: [:create, :update]
       resources :task_courses, only: [:index, :create, :update, :destroy]
+      resources :staffs, only: [:update]
+      resources :users, only: [:create]
+      patch "/users", to: "users#update"
+      patch "/calendars", to: "calendars#update"
     end
   end
 # ================================================================================================================-

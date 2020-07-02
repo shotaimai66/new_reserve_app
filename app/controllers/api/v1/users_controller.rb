@@ -10,13 +10,17 @@ class Api::V1::UsersController < Api::Base
       @staff = @calendar.staffs.create!(name: @user.name, email: @user.email, password: @user.password)
       user = user_and_relational_objects_to_json(@user)
       staff = @staff.to_json(only: [:id])
-      render status: 200, json: { status: "200", message: "Created User and Relational Resourses", user: JSON.parse(user), staff: JSON.parse(staff) }  
+      render status: 200, json: { status: "200", message: "Created User and Relational Resourses", user: JSON.parse(user), staff: JSON.parse(staff) }
     else
       response_bad_request
     end
   end
   
   def update
+    if params[:user][:password].blank?
+      params[:user].delete('password')
+      params[:user].delete('password_confirmation')
+    end
     if @user.update(user_params)
       user = user_to_json(@user)
       render status: 200, json: { status: "200", message: "Updated User", user: JSON.parse(user) }
@@ -42,7 +46,7 @@ class Api::V1::UsersController < Api::Base
 
     def user_and_relational_objects_to_json(user)
       user.to_json(
-        only: [:id, :name, :email, :password, :token],
+        only: [:id, :name, :email, :token],
         include: {
           calendars: { :only => [:id, :calendar_name, :address, :phone, :public_uid], 
             include: {
@@ -54,6 +58,6 @@ class Api::V1::UsersController < Api::Base
     end
 
     def user_to_json(user)
-      user.to_json(only: [:id, :name, :email, :password])
+      user.to_json(only: [:id, :name, :email])
     end
 end
