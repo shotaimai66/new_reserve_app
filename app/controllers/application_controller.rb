@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery
   protect_from_forgery with: :exception
   alias devise_current_user current_user
+  before_action :store_current_location, unless: :devise_controller?
 
   # 他のエラーハンドリングでキャッチできなかった場合に
   # 500 Internal Server Error(システムエラー)を発生させる
@@ -60,7 +61,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.calendars.empty?
       introductions_new_calendar_path
     else
-      user_calendar_dashboard_path(current_user, current_user.calendars.first) # ログイン後に遷移するpathを設定
+      stored_location_for(:user) || user_calendar_dashboard_path(current_user, current_user.calendars.first) # ログイン後に遷移するpathを設定
     end
   end
 
@@ -71,6 +72,12 @@ class ApplicationController < ActionController::Base
     else
       new_staff_session_url # ログアウト後に遷移するpathを設定
     end
+  end
+
+  # ログアウト状態でアクセスしたURLを記憶
+  def store_current_location
+    return if current_user
+    store_location_for(:user, request.url)
   end
 
   def end_time(start_time, task_course)

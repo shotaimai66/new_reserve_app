@@ -23,7 +23,7 @@ class User::Base < ApplicationController
   end
 
   def authenticate_user_staff!
-    redirect_to new_staff_session_url unless current_user || current_staff
+    redirect_to new_user_session_url unless current_user || current_staff
   end
 
   def authenticate_current_user!
