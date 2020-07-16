@@ -114,7 +114,8 @@ class User::PayjpController < User::Base
 
   # 課金状況が変更されたらポータルサイトに情報を送信
   def order_plan_webhook(order_plan)
-    url = "http://localhost:4000/smart_yoyaku/webhook"
+    url = 
+      Rails.env.development? ? "http://localhost:4000/smart_yoyaku/webhook" : "https://smartyoyakupotalsite.herokuapp.com/smart_yoyaku/webhook"
     `curl -v POST "#{url}" \
     -d '{"app":"SmartYoyakuSystem","type":"UPDATED_ORDERPLAN_STATUS","order_plan":{"id":"#{order_plan.id}","status":"#{order_plan.status}"},"user":{"token":"#{current_user.token}"}}' \
     -H 'Content-Type:application/json'`
