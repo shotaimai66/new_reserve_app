@@ -62,4 +62,10 @@ class User::Base < ApplicationController
       redirect_to choice_plan_url
     end
   end
+
+  # ポータルサイトのroot_urlを設定
+  def set_smart_portal_url
+    @smart_portal_url =
+      Rails.env.development? ? ENV['DEVELOPMENT_SMART_PORTAL_URL'] : ENV['PRODUCTION_SMART_PORTAL_URL']
+  end
 end

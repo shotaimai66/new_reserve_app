@@ -68,7 +68,8 @@
       </div>
     </div>
   <% end %>
-  <div class="text-right mt-5">
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <div class="text-right mt-4">
+    <p><%= link_to "ポータルサイトへ", @smart_portal_url %></p>
+    <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
   </div>
 </div>

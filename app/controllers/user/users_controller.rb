@@ -5,6 +5,7 @@ class User::UsersController < User::Base
   def show
     @user = current_user
     @order_plans = @user.order_plans
+    set_smart_portal_url
   end
 
   def update

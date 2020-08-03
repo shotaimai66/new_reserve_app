@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::Base
       @staff = @calendar.staffs.create!(name: @user.name, email: @user.email, password: @user.password)
       user = user_and_relational_objects_to_json(@user)
       staff = @staff.to_json(only: [:id])
-      render status: 200, json: { status: "200", message: "Created User and Relational Resourses", user: JSON.parse(user), staff: JSON.parse(staff) }
+      render status: 200, json: { status: "200", message: "Created User and Relational Resources", user: JSON.parse(user), staff: JSON.parse(staff) }
     else
       response_bad_request
     end

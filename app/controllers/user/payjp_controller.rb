@@ -3,6 +3,7 @@ class User::PayjpController < User::Base
   before_action :has_order_plan?, only: [:form]
   before_action :correct_order_plan?, only: %i[destroy_order_operation destroy_order show]
   before_action :correct_user, only: %i[show destroy_order_operation destroy_order]
+  before_action :set_smart_portal_url, only: %i[choice_plan complete_order show]
   skip_before_action :agreement_plan?
   skip_before_action :authenticate_user_staff!, only: %i[privacy use]
   skip_before_action :initial_setting_complete?, only: %i[privacy use]
@@ -58,6 +59,7 @@ class User::PayjpController < User::Base
 
   def destroy_order_operation
     @order_plan = OrderPlan.find_by(id: params[:id])
+    @calendar_name = @order_plan.user.calendars.first.calendar_name
     if @order_plan && @order_plan.status == 'ongoing'
       @plan = @order_plan.plan
     else
@@ -115,7 +117,7 @@ class User::PayjpController < User::Base
   # 課金状況が変更されたらポータルサイトに情報を送信
   def order_plan_webhook(order_plan)
     url = 
-      Rails.env.development? ? "http://localhost:4000/smart_yoyaku/webhook" : "https://smartyoyakupotalsite.herokuapp.com/smart_yoyaku/webhook"
+      Rails.env.development? ? ENV['DEVELOPMENT_SMART_PORTAL_URL'] + "/smart_yoyaku/webhook" : ENV['PRODUCTION_SMART_PORTAL_URL'] + "/smart_yoyaku/webhook"
     `curl -v POST "#{url}" \
     -d '{"app":"SmartYoyakuSystem","type":"UPDATED_ORDERPLAN_STATUS","order_plan":{"id":"#{order_plan.id}","status":"#{order_plan.status}"},"user":{"token":"#{current_user.token}"}}' \
     -H 'Content-Type:application/json'`
