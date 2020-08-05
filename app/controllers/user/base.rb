@@ -23,7 +23,7 @@ class User::Base < ApplicationController
   end
 
   def authenticate_user_staff!
-    redirect_to new_staff_session_url unless current_user || current_staff
+    redirect_to new_user_session_url unless current_user || current_staff
   end
 
   def authenticate_current_user!
@@ -61,5 +61,11 @@ class User::Base < ApplicationController
       flash[:danger] = 'プランを選択してください。'
       redirect_to choice_plan_url
     end
+  end
+
+  # ポータルサイトのroot_urlを設定
+  def set_smart_portal_url
+    @smart_portal_url =
+      Rails.env.development? ? ENV['DEVELOPMENT_SMART_PORTAL_URL'] : ENV['PRODUCTION_SMART_PORTAL_URL']
   end
 end

@@ -12,4 +12,5 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :calendars
 
   serialize :google_api_token, Hash
+  has_secure_token
 end

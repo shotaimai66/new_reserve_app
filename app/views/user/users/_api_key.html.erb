@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">ポータルサイト連携用APIキー</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        スマートポータルサイトにログイン後、こちらに表示されているAPIキーを【マイページ】→【登録内容】
+        →【スマート予約システム連携】よりご登録いただきますと連携が完了いたします。
+      </p>
+      <br>
+      【APIキー】<%= @user.token %>
+    </div>
+  </div>
+</div>

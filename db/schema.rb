@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_26_084530) do
+ActiveRecord::Schema.define(version: 2020_05_20_133722) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 2020_01_26_084530) do
     t.datetime "updated_at", null: false
     t.text "memo"
     t.boolean "is_allow_notice"
+    t.string "address"
     t.index ["calendar_id"], name: "index_store_members_on_calendar_id"
   end
 
@@ -312,8 +313,10 @@ ActiveRecord::Schema.define(version: 2020_01_26_084530) do
     t.text "google_api_token"
     t.string "member_id"
     t.string "name"
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
   add_foreign_key "calendar_configs", "calendars"

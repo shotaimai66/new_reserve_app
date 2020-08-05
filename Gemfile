@@ -45,7 +45,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 # to load environment variables from `.env`.
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 
 # link google calendar
 gem 'google-api-client', require: 'google/apis/calendar_v3'
@@ -59,7 +59,8 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 
 gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails'
+# ↓↓↓ 24行目に記載されているのでコメントアウト 
+# gem 'jquery-rails'
 gem 'active_decorator'
 
 # 決済機能
@@ -100,12 +101,18 @@ gem 'serviceworker-rails'
 
 # for image uploader with AWS S3
 gem 'carrierwave'
-gem 'fog'
+
+# ローカルではfog-awsを使用
+gem 'fog-aws'
+# gem 'fog'
 
 # text_areaのフォームを自動調整
 gem 'autosize', '~> 2.4'
 
 gem 'thin'
+
+# エラーをスラックに通知
+gem 'slack_500'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

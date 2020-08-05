@@ -75,3 +75,13 @@
         </tbody>
     </table>
 <% end %>
+<h2 class="mt-5">スマートポータルサイト連携用APIキー</h2>
+<%= link_to "現在のAPIキーを表示する", user_api_key_path(@user), remote: true, class:"btn btn-success ml-2 my-2" %>
+<%= link_to "新しいAPIキーを発行する", user_new_api_key_path(@user), remote: true,
+data: {confirm: "新しいAPIキーを発行すると【スマートポータルサイト】でAPIキーの再登録が必要となります。本当によろしいですか？"}, class:"btn btn-danger ml-2 my-2" %>
+<div class="text-right mt-4">
+    <%= link_to "ポータルサイトへ", @smart_portal_url %>
+</div>
+
+<div id="api-key" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="new-api-key" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

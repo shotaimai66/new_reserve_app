@@ -39,6 +39,7 @@
     </table>
     <div class="card-footer">
       <%= link_to "戻る", order_plan_path(@order_plan), class:"btn btn-primary" %>
-      <%= link_to "上記プランを解約する", destroy_order_path(@order_plan), method: :patch, class:"btn btn-danger", data:{confirm: "本当に解約しますか？"} %>
+      <%= link_to "上記プランを解約する", destroy_order_path(@order_plan), method: :patch, class:"btn btn-danger",
+      data:{confirm: "ご解約されますと#{@calendar_name}様のページがポータルサイトで非表示となり、予約機能がご利用いただけなくなります。本当によろしいですか？"} %>
     </div>
   </div>
