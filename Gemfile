@@ -54,7 +54,7 @@ gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem 'redis-namespace'
 gem 'sidekiq'
 
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 
